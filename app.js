@@ -87,17 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
         sosButton.classList.add('sent');
         
         const hostel = localStorage.getItem('vgn_blood') || "STATION:NOT SET";
-        const studentId = localStorage.getItem('vgn_allergies') || "AGRO-RANGER OPERATIVE";
+        const studentId = localStorage.getItem('vgn_allergies') || "AGRO-RANGER";
 
         statusMsg.innerHTML = `<p style="color: #003366; font-weight: bold; text-align: center;">🛰️ Establishing GPS Lock...</p>`;
 
         navigator.geolocation.getCurrentPosition((pos) => {
             const mapUrl = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-            const smsBody = `🚩 SENTINEL-DEFENDER\nID: ${hostel}\nCCSO-ID: ${studentId}\nGPS: ${mapUrl}\nSTATUS: URGENT.`;
+            const smsBody = `🚩 SENTINEL-DEFENDER\nID: ${hostel}\n: ${studentId}\nGPS: ${mapUrl}\nSTATUS: URGENT.`;
             showSmsButton(smsBody); 
             window.playSiren();
         }, (err) => {
-            const smsBody = `🚩 SENTINEL-DEFENDER\nID: ${hostel}\nCCSO-ID: ${studentId}\nSTATUS: URGENT (GPS OFF).`;
+            const smsBody = `🚩 SENTINEL-DEFENDER\nID: ${hostel}\n: ${studentId}\nSTATUS: URGENT (GPS OFF).`;
             showSmsButton(smsBody);
             window.playSiren();
         }, { enableHighAccuracy: true, timeout: 5000 });
