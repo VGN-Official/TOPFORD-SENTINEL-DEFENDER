@@ -86,18 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
         isSent = true;
         sosButton.classList.add('sent');
         
-        const hostel = localStorage.getItem('vgn_blood') || "STATION:NOT SET";
-        const studentId = localStorage.getItem('vgn_allergies') || "AGRO-RANGER";
+        const hostel = localStorage.getItem('vgn_blood') || "SECTOR: UNASSIGNED";
+        const studentId = localStorage.getItem('vgn_allergies') || "RANGER-ID: PENDING";
 
         statusMsg.innerHTML = `<p style="color: #003366; font-weight: bold; text-align: center;">🛰️ Establishing GPS Lock...</p>`;
 
         navigator.geolocation.getCurrentPosition((pos) => {
             const mapUrl = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-            const smsBody = `🚩 SENTINEL-DEFENDER\nRenger-Location: ${hostel}\nRenger-ID: ${studentId}\nGPS: ${mapUrl}\nSTATUS: URGENT.`;
+            const smsBody = `🚩 SENTINEL-DEFENDER\nSector: ${hostel}\nAgent: ${studentId}\nGPS: ${mapUrl}\nSTATUS: URGENT.`;
             showSmsButton(smsBody); 
             window.playSiren();
         }, (err) => {
-            const smsBody = `🚩 SENTINEL-DEFENDER\nID: ${hostel}\n: ${studentId}\nSTATUS: URGENT (GPS OFF).`;
+            const smsBody = `🚩 SENTINEL-DEFENDER\nSector: ${hostel}\nAgent: ${studentId}\nSTATUS: URGENT (GPS OFF).`;
             showSmsButton(smsBody);
             window.playSiren();
         }, { enableHighAccuracy: true, timeout: 5000 });
